@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Results</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Search Results</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="mytrips.html">My Trips</a>
+    </nav>
+  </header>
+
+  <h2>Available Trips</h2>
+  <div id="results"></div>
+
+  <script>
+    let data = JSON.parse(localStorage.getItem("searchData"));
+    let resultsDiv = document.getElementById("results");
+
+    if(data){
+      resultsDiv.innerHTML = `
+        <p>Trips from <b>${data.from}</b> to <b>${data.to}</b> on <b>${data.date}</b> for ${data.guests} guests</p>
+        <button onclick="bookTrip('${data.from}','${data.to}','${data.date}','${data.guests}')">Book Now</button>
+      `;
+    }
+
+    function bookTrip(from,to,date,guests){
+      localStorage.setItem("bookedTrip", JSON.stringify({from,to,date,guests}));
+      window.location.href = "booking.html";
+    }
+  </script>
+</body>
+</html>

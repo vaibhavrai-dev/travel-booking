@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Trips</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>My Trips</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="mytrips.html">My Trips</a>
+    </nav>
+  </header>
+
+  <h2>My Trips</h2>
+  <div id="myTrips"></div>
+
+  <script>
+    let booking = JSON.parse(localStorage.getItem("finalBooking"));
+    let div = document.getElementById("myTrips");
+
+    if(booking){
+      div.innerHTML = `
+        <p>👤 ${booking.name}</p>
+        <p>📍 ${booking.from} → ${booking.to}</p>
+        <p>📅 ${booking.date}</p>
+      `;
+    }else{
+      div.innerHTML = "<p>No bookings found</p>";
+    }
+  </script>
+</body>
+</html>
